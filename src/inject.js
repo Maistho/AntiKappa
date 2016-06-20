@@ -265,6 +265,17 @@
     function isSpam(message) {
       message = message.replace(emotes_regex, '');
       if (message.length === 0) return true;
+      // Remove messages with more than 2 emotes
+      var found_emotes = message.match(emotes_regex);
+      if (found_emotes) {
+        if (found_emotes.length > 2) return true;
+
+        // Remove messages with only emotes
+        message = message.replace(emotes_regex, '').trim();
+        if (message.length === 0) return true;
+      }
+
+      // Run through all spam checks
       for (var i = 0; i < spamChecks.length; ++i) {
         if (spamChecks[i](message)) {
           return true;
