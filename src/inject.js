@@ -9,15 +9,17 @@
   }, 1000);
   function filterTwitch(TMI) {
     var spam_words = [
-      'vac',
       '^\\w+$',
       '^\\!',
       'was.*?the.*?problem.*?',
       'darude.*?sandstorm',
       'her+o her+o',
-      'dun.*?dun.*?dun',
+      'dun?.*?dun?.*?dun?',
       'rip skins',
-      'budstar',
+      'BudStar',
+      '█',
+      '(.+?)\1{4,}',
+      'orc.*?spam',
     ];
     var emotes = [
       "4Head",
