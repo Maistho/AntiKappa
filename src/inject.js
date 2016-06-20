@@ -262,9 +262,11 @@
         return !(lower && lower.length > upper.length);
       }
     ];
-    function isSpam(message) {
-      message = message.replace(emotes_regex, '');
-      if (message.length === 0) return true;
+    function isSpam(e, message) {
+
+      // Remove messages with custom color
+      if (e.color) return true;
+
       // Remove messages with more than 2 emotes
       var found_emotes = message.match(emotes_regex);
       if (found_emotes) {
@@ -298,7 +300,7 @@
       var orig = room._events.message[0];
 
       room._events.message[0] = function(e) {
-        if (!isSpam(e.message)) {
+        if (!isSpam(e, e.message)) {
           orig(e);
         }
       };
