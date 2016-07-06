@@ -287,11 +287,7 @@
     }
 
     var initRoom = function() {
-      var room;
-      for (var i in TMI._sessions[0]._rooms) {
-        room = TMI._sessions[0]._rooms[i];
-        break;
-      }
+      var room = TMI._sessions[0]._rooms[document.location.pathname.substr(1)];
       if (!room) {
         return;
       }
