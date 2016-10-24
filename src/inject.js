@@ -1,4 +1,5 @@
 (function() {
+  window.filterTwitchTimings = [];
   var TMIExistsInterval = setInterval(function() {
     if (window.TMI) {
       clearInterval(TMIExistsInterval);
@@ -21,228 +22,8 @@
       '(.+?)\1{4,}',
       'orc.*?spam',
     ];
-    var emotes = [
-      "150Cappa",
-      "4Head",
-      "AMPEnergy",
-      "AMPEnergyCherry",
-      "ANELE",
-      "anomM8",
-      "anomVAC",
-      "ArgieB8",
-      "ArsonNoSexy",
-      "AsianGlow",
-      "AthenaPMS",
-      "BabyRage",
-      "BatChest",
-      "BCouch",
-      "BCWarrior",
-      "bibaSucks",
-      "bibaVac",
-      "BibleThump",
-      "BiersDerp",
-      "BigBrother",
-      "BionicBunion",
-      "BlargNaut",
-      "bleedPurple",
-      "BloodTrail",
-      "boatyD",
-      "boatyG",
-      "boatyR",
-      "boatyU",
-      "BORT",
-      "BrainSlug",
-      "BrokeBack",
-      "broxyPachi",
-      "BudBlast",
-      "BuddhaBar",
-      "BudStar",
-      "bunkerVac",
-      "ChefFrank",
-      "cmonBruh",
-      "CoolCat",
-      "CorgiDerp",
-      "CougarHunt",
-      "DAESuppy",
-      "DalLOVE",
-      "DansGame",
-      "DatSheffy",
-      "DBstyle",
-      "deExcite",
-      "deIlluminati",
-      "DendiFace",
-      "DogFace",
-      "donaTampon",
-      "DOOMGuy",
-      "DoritosChip",
-      "duDudu",
-      "EagleEye",
-      "EleGiggle",
-      "FailFish",
-      "fallenBR",
-      "fallenNTC",
-      "forsenSleeper",
-      "FPSMarksman",
-      "FrankerZ",
-      "FreakinStinkin",
-      "FUNgineer",
-      "FunRun",
-      "FutureMan",
-      "FuzzyOtterOO",
-      "GingerPower",
-      "GrammarKing",
-      "HassaanChop",
-      "HassanChop",
-      "HeyGuys",
-      "hiroWtf",
-      "HotPokket",
-      "hottedGG",
-      "HumbleLife",
-      "ItsBoshyTime",
-      "j4ckieGasm",
-      "j4ckieHi",
-      "Jebaited",
-      "JKanStyle",
-      "JonCarnage",
-      "jukeLuv",
-      "KAPOW",
-      "Kappa",
-      "KappaClaus",
-      "KappaPride",
-      "KappaRoss",
-      "KappaWealth",
-      "keefRigged",
-      "Keepo",
-      "KevinTurtle",
-      "Kippa",
-      "Kreygasm",
-      "krippO",
-      "lirikH",
-      "lirikHug",
-      "Mau5",
-      "mcaT",
-      "MikeHogu",
-      "MingLee",
-      "MKXRaiden",
-      "MKXScorpion",
-      "moeEz",
-      "moeMoed",
-      "monniFin",
-      "MrDestructoid",
-      "MVGame",
-      "NinjaTroll",
-      "NomNom",
-      "NoNoSpot",
-      "NotATK",
-      "NotLikeThis",
-      "oakPenal",
-      "OhMyDog",
-      "omarGar",
-      "omgPoro",
-      "OMGScoots",
-      "omgYay",
-      "OneHand",
-      "onsApprove",
-      "onsBan",
-      "onsLAD",
-      "OpieOP",
-      "OptimizePrime",
-      "OSfrog",
-      "OSkomodo",
-      "OSsloth",
-      "panicBasket",
-      "PanicVis",
-      "PartyTime",
-      "PazPazowitz",
-      "PeoplesChamp",
-      "PermaSmug",
-      "PeteZaroll",
-      "PeteZarollTie",
-      "pglKnife",
-      "phantomFish",
-      "phantomLoss",
-      "phantomRigged",
-      "PicoMause",
-      "PipeHype",
-      "PJSalt",
-      "PJSugar",
-      "PMSTwin",
-      "PogChamp",
-      "Poooound",
-      "PraiseIt",
-      "PRChase",
-      "pteroRaena",
-      "PunchTrees",
-      "PuppeyFace",
-      "RaccAttack",
-      "RalpherZ",
-      "RedCoat",
-      "ResidentSleeper",
-      "resttK",
-      "riPepperonis",
-      "RitzMitz",
-      "robinBags",
-      "RuleFive",
-      "SeemsGood",
-      "ShadyLulu",
-      "ShazBotstix",
-      "ShibeZ",
-      "sixHeart",
-      "SmoocherZ",
-      "SMOrc",
-      "SMSkull",
-      "SoBayed",
-      "SoonerLater",
-      "SriHead",
-      "SSSsss",
-      "StinkyCheese",
-      "StoneLightning",
-      "StrawBeary",
-      "sukRIP",
-      "sumPotato",
-      "SuperVinlin",
-      "SwiftRage",
-      "TBCheesePull",
-      "TBTacoLeft",
-      "TBTacoRight",
-      "TF2John",
-      "TheRinger",
-      "TheTarFu",
-      "TheThing",
-      "ThunBeast",
-      "TinyFace",
-      "togiSU",
-      "TooSpicy",
-      "TriHard",
-      "trilluxeVAC",
-      "tripleLOVE",
-      "trumpW",
-      "TTours",
-      "twitchRaid",
-      "TwitchRPG",
-      "UleetBackup",
-      "UncleNox",
-      "unlostBic",
-      "UnSane",
-      "vakob1VAC",
-      "VaultBoy",
-      "VoHiYo",
-      "Volcania",
-      "weed1",
-      "weed2",
-      "weed3",
-      "weed4",
-      "weedGG",
-      "weedOOO",
-      "weedWOO",
-      "WholeWheat",
-      "WinWaker",
-      "WTRuck",
-      "WutFace",
-      "YouWHY",
-    ];
 
-    var emotes_regex = RegExp(emotes.join('|'), 'g');
+    var emotes_regex = RegExp(twitchFilterEmotes.join('|'), 'g');
     var spam_regex = RegExp(spam_words.join('|'), 'i');
     spamChecks = [
       function isInSpamList(message) {
@@ -263,6 +44,7 @@
       }
     ];
     function isSpam(e, message) {
+      var timing = {start: performance.now(), end: null, message: message};
 
       // Remove messages with custom color
       if (e.color) return true;
@@ -274,33 +56,41 @@
 
         // Remove messages with only emotes
         message = message.replace(emotes_regex, '').trim();
-        if (message.length === 0) return true;
+        if (!message.match(/\w/)) return true;
       }
 
       // Run through all spam checks
       for (var i = 0; i < spamChecks.length; ++i) {
         if (spamChecks[i](message)) {
+          timing.end = performance.now();
+          window.filterTwitchTimings.push(timing);
           return true;
         }
       }
+      timing.end = performance.now();
+      window.filterTwitchTimings.push(timing);
       return false;
     }
 
     var initRoom = function() {
-      var room = TMI._sessions[0]._rooms[document.location.pathname.substr(1)];
-      if (!room) {
+      for (var roomId in TMI._sessions[0]._rooms) {
+        var room = TMI._sessions[0]._rooms[roomId];
+        if (!room || !room._events || !room._events.message) continue;
+        console.log(room)
+        var orig = room._events.message[0];
+
+        room._events.message[0] = function(e) {
+          if (!isSpam(e, e.message)) {
+            orig(e);
+          }
+        };
+      }
+      if (!room || !room._events || !room._events.message) {
         return;
       }
       clearInterval(RoomExistsInterval);
-
-      var orig = room._events.message[0];
-
-      room._events.message[0] = function(e) {
-        if (!isSpam(e, e.message)) {
-          orig(e);
-        }
-      };
     };
-    var RoomExistsInterval = setInterval(initRoom, 100);
+
+    var RoomExistsInterval = setInterval(initRoom, 1000);
   }
 })();
